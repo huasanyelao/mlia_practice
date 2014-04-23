@@ -1,3 +1,4 @@
+
 def loadDataSet() :
     postingList=[['my', 'dog', 'has', 'flea', 'problems', 'help', 'please'],
                  ['maybe', 'not', 'take', 'him', 'to', 'dog', 'park', 'stupid'],
@@ -9,4 +10,16 @@ def loadDataSet() :
     return postingList, classVec
 
 def createVocabList(dataSet):
-    
+    vocabSet = set([])
+    for document in dataSet :
+        vocabSet |= set(document)
+    return list(vocabSet)
+
+def setOfWords2Vec(vocabList, inputSet) :
+    returnVec = [0] * len(vocabList)
+    for word in inputSet:
+        if word in vocabList:
+            returnVec[vocabList.index(word)] = 1
+        else :
+            print "the word: %s is not in my Vocalbulary!" % word
+    return returnVec
